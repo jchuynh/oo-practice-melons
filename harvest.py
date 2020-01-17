@@ -23,7 +23,6 @@ class MelonType(object):
 
         self.pairings.append(pairing)
 
-
     def update_code(self, new_code):
         """Replace the reporting code with the new_code."""
 
@@ -55,22 +54,55 @@ def make_melon_types():
 def print_pairing_info(melon_types):
     """Prints information about each melon type's pairings."""
 
-    # Fill in the rest
+    for item in melon_types:
+        item_pairings = item.pairings
+        print("{} pairs with".format(item.name))
+
+        for paired_thing in item_pairings:
+            print(f'-{paired_thing}')
+        print()
+
 
 def make_melon_type_lookup(melon_types):
     """Takes a list of MelonTypes and returns a dictionary of melon type by code."""
 
-    # Fill in the rest
+    melon_code_lookup = {}
+
+    for melon in melon_types:
+        melon_code_lookup[melon.code] = melon
+
+    return melon_code_lookup
 
 ############
 # Part 2   #
 ############
+
 
 class Melon(object):
     """A melon in a melon harvest."""
 
     # Fill in the rest
     # Needs __init__ and is_sellable methods
+    def __init__(self, melon_number, melon_type, shape_rating, color_rating, field, harvester):
+
+        self.melon_number = melon_number
+        self.melon_type = melon_type
+        self.shape_rating = shape_rating
+        self.color_rating = color_rating
+        self.field = field
+        self.harvester = harvester
+
+    def is_sellable(self):
+
+        if self.field == 3:
+            print(False)
+        else:
+            if self.shape_rating > 5 and self.color_rating > 5:
+                print(True)
+            else:
+                print(False)
+
+
 
 def make_melons(melon_types):
     """Returns a list of Melon objects."""
